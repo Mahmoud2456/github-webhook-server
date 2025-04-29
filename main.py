@@ -20,6 +20,7 @@ async def github_webhook(request: Request):
             "title": title,
             "files": update_files
         }
-        publish.single("update/notify", json.dumps(queue_message), hostname="localhost")
+
+        publish.single("update/notify", json.dumps(queue_message), hostname="broker.example.com")
         print("MQTT message published: New update available!")
     return {"message": "Received"}
